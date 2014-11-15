@@ -10,4 +10,5 @@ start() ->
     receive
         {Msg} ->
             io:fwrite("~s~n", [Msg]),
-            start().
+            start()
+    end.
