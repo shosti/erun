@@ -5,3 +5,9 @@ rand_node() ->
     Nodes = nodes(),
     Index = random:uniform(length(Nodes)),
     lists:nth(Index, Nodes).
+
+start() ->
+    receive
+        {Msg} ->
+            io:fwrite("~s~n", [Msg]),
+            start().
