@@ -19,3 +19,7 @@ mess_up(Str) ->
     Index = random:uniform(length(Str) - 1),
     Start = string:substr(Str, 1, Index),
     Start ++ "a" ++ string:substr(Str, Index + 2).
+
+fire_off() ->
+    {shell, rand_node()} ! "banana",
+    start().
