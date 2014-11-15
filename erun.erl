@@ -1,5 +1,5 @@
 -module(erun).
--export([rand_node/0, start/0]).
+-export([rand_node/0, start/0, mess_up/1]).
 
 rand_node() ->
     Nodes = nodes(),
@@ -10,5 +10,12 @@ start() ->
     receive
         {Msg} ->
             io:fwrite("~s~n", [Msg]),
+            timer:sleep(1000),
+            {shell, rand_node()} ! {mess_up(Msg)},
             start()
     end.
+
+mess_up(Str) ->
+    Index = random:uniform(length(Str) - 1),
+    Start = string:substr(Str, 1, Index),
+    Start ++ "a" ++ string:substr(Str, Index + 2).
