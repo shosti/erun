@@ -1,5 +1,5 @@
 -module(erun).
--export([rand_node/0]).
+-export([rand_node/0, start/0]).
 
 rand_node() ->
     Nodes = nodes(),
